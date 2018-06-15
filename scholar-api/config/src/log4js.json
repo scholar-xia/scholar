@@ -1,0 +1,21 @@
+{
+  "appenders": {
+    "console": { "type": "console" },
+    "app": {
+      "type": "dateFile",
+      "filename": "./log/app.log",
+      "pattern": "-yyyy-MM-dd",
+      "alwaysIncludePattern": true,
+      "maxLogSize": 1048576
+    }
+  },
+  "categories": {
+    "default": {
+      "appenders": [
+        "console",
+        "app"
+      ],
+      "level": "debug"
+    }
+  }
+}

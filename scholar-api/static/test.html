@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul li {
+      list-style: none;
+      border: 1px solid red;
+      padding: 10px 0;
+      text-align: center;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <input id="ip" type="text" placeholder="login">
+  <button class="btn">login</button>
+  <div style="width:600px;height:600px;margin:40px auto">
+    <div style="width:100px;height:600px;border:1px solid red;float:left">
+      <ul>
+        <li>世界</li>
+        <li>帮派</li>
+        <li>家族</li>
+      </ul>
+    </div>
+    <div id="fid1" style="width:394px;height:600px;border:1px solid red;float:left;position:relative">
+      <ul id="msg">
+
+      </ul>
+      <div style="position:absolute;bottom:0">
+        <input id="fchat" type="text" style="width:300px;height:40px">
+        <button id="btn" style="height:40px;width:40px">发言</button>
+      </div>
+    </div>
+    <div style="width:100px;height:600px;border:1px solid red;float:left">
+      <ul id="friend">
+        <li>123123</li>
+      </ul>
+    </div>
+  </div>
+
+  <input id="from" type="text" placeholder="from">
+  <input id="to" type="text" placeholder="to">
+  <input id="msg" type="text" placeholder="msg">
+  <button class="msg">msg</button>
+</body>
+<script>
+  var socket = io('http://127.0.0.1:3000');
+  $('.btn').click(function () {
+    socket.emit('starChat', $('#ip').val())
+  })
+  socket.on('erruser', function (data) {
+    console.log(data)
+  })
+  socket.on('system', function (data) {
+    $('#friend').append("<li>" + data.name + "</li>")
+  })
+  $('body').on('click', '#friend li', function () {
+    var to = $(this).html()
+    // $('#fid1').css('display', 'block')
+    var _this = this
+    $('#btn').click(function () {
+      var from = $('ip').val()
+      var msg = $('#fchat').val()
+      console.log(from,to,msg)
+      _this.socket.emit('fromChat', from, to, msg)
+    })
+  })
+  // $('.msg').click(function () {
+  //   let from = $('#from').val()
+  //   let to = $('#to').val()
+  //   let msg = $('#msg').val()
+  //   socket.emit('fromChat', from, to, msg)
+  // })
+  socket.on('toChat', function (data) {
+    console.log(data)
+  })
+  $(window).unload(function () {
+    socket.emit('disconnect')
+  })
+</script>
+
+</html>

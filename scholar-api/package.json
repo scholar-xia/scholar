@@ -1,0 +1,30 @@
+{
+  "name": "scholar-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "set NODE_ENV=dev&& supervisor -w bin,config,libs,utils -x node bin",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@alicloud/sms-sdk": "^1.0.2",
+    "body-parser": "^1.18.2",
+    "canvas": "^1.6.7",
+    "cheerio": "^1.0.0-rc.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "joi": "^13.0.0",
+    "jsonwebtoken": "^7.4.3",
+    "log4js": "^2.3.7",
+    "mime": "^1.4.0",
+    "moment": "^2.18.1",
+    "mongoose": "^4.11.9",
+    "redis": "^2.8.0",
+    "request": "^2.83.0",
+    "socket.io": "^2.0.4",
+    "supervisor": "^0.12.0"
+  }
+}
