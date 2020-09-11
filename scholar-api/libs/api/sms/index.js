@@ -1,7 +1,7 @@
 const SMSClient = require('@alicloud/sms-sdk')
 
-const accessKeyId = 'LTAI9LoIlNc7DqsG'
-const secretAccseeKey = '3139fuojENUrfykQlna2J2QqOWjSWo'
+const accessKeyId = 'accessKeyId'
+const secretAccseeKey = 'secretAccseeKey'
 
 module.exports = function () {
   const SMSClients = new SMSClient({accessKeyId, secretAccseeKey})
